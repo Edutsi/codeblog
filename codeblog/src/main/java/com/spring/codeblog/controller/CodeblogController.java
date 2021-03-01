@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,7 +23,27 @@ public class CodeblogController {
 	public ModelAndView getPosts() {
 		ModelAndView mv = new ModelAndView("posts");
 		List<Post> posts = codeblogService.findAll();
-		mv.addObject("posts", posts);
+		mv.addObject("posts", posts);//o div class card do posts.hmtl busca este obj th:each 
+		return mv;
+	}
+	@RequestMapping(value="/posts/{id}", method = RequestMethod.GET)//mapeando a URL que o cliente vai acessar
+	public ModelAndView getPostDetails(@PathVariable("id") long id) {
+		ModelAndView mv = new ModelAndView("postDetails");
+		Post post = codeblogService.findByid(id);
+		mv.addObject("post", post);//o div class card do posts.hmtl busca este obj th:each 
 		return mv;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

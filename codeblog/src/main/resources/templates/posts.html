@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>MyCodeBlog</title>
@@ -29,8 +29,18 @@
 </nav>
 	
 	
-	<div class="card">
-		<div class="card-body">Teste This is some text within a card body.</div>
+	<div class="card shadow-sm bg-white rounded" style="margin-top: 20px;" th:each="post : ${posts}"><!--th:each funciona como um FOR  busca o atributo mv.addObject("posts", posts); na classe CodeblogController-->
+		<div class="card-body">
+		 <p class="card-subtitle mb-2 text-muted" style="font-size: 0.8rem;">
+                    <span th:text="${post.autor}"></span>
+                    <span th:text="${post.data}"></span>
+                </p>
+                <a th:href="${(#mvc.url('BC#getPostDetails').arg(0, post.id)).build()}"><h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;"><span th:text="${post.titulo}"></span></h4></a><!-- esta linha foi insreida na aula 06 mais está com erro pois nao pertence a aula 06 -->
+                <p class="card-text"><span th:utext="${#strings.abbreviate(post.texto,400)} "></span></p><!--strings.abbreviate mostra só uma previa do texto na pg principal  -->
+                <!--<a th:href="${(#mvc.url('BC#getPostDetails').arg(0, post.id)).build()}" class="card-link">Acessar</a>-->
+		
+		
+		</div>
 	</div>
 </section>
 <body>
