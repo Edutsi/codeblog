@@ -48,6 +48,8 @@ public class CodeblogController {
 	//@valid vai fazer as validacoes do post como a @Blank
 	public String savePost(@Valid Post post, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()){
+			//attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
+			attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
 			return "redirect:/newpost";
 		}
 		post.setData(LocalDate.now());

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns ="http://www.w3.org./1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-	<meta charset="ISO-8859-1">
     <title>MyCodeBlog</title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
@@ -32,7 +33,7 @@
             </ol>
         </nav>
         <div>
-<!--             <th:block th:include="mensagemValidacao"></th:block> -->
+             <th:block th:replace="mensagemValidacao"></th:block>
             <form method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" name="titulo" placeholder="Título *">
@@ -41,7 +42,7 @@
                     <input type="text" class="form-control" name="autor" placeholder="Autor *">
                 </div>
 
-                <textarea type="text" class="form-control" name="texto" placeholder="Texto *"></textarea>
+                <textarea id="summernote" type="text" class="form-control" name="texto" placeholder="Texto *"></textarea>
 
                 <small class="form-text text-muted">(*) Campos obrigatórios</small>
 
@@ -52,7 +53,13 @@
         </div>
     </div>
     </section>
-
+<script>
+    $('#summernote').summernote({
+        placeholder: 'Texto *',
+        tabsize: 2,
+        height: 300
+    });
+</script>
 
 </body>
 </html>
