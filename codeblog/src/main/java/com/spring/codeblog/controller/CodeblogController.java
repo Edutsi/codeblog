@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.spring.codeblog.model.Post;
 import com.spring.codeblog.service.CodeblogService;
 
-///CONTROLLER VAI receber as requisições dos clientes
+///CONTROLLER VAI receber as requisições dos clientes(paginas html)
 @Controller
 public class CodeblogController {
 
@@ -33,7 +33,13 @@ public class CodeblogController {
 		mv.addObject("posts", posts);// o div class card do posts.hmtl busca este obj th:each
 		return mv;
 	}
-
+	@RequestMapping(value = "/painelAdmin", method = RequestMethod.GET) // mapeando a URL que o cliente vai acessar
+	public ModelAndView painelAdmin() {
+		ModelAndView mv = new ModelAndView("painelAdmin");
+		List<Post> posts = codeblogService.findAll();
+		mv.addObject("posts", posts);// o div class card do posts.hmtl busca este obj th:each
+		return mv;
+	}
 	@RequestMapping(value = "/posts/{id}", method = RequestMethod.GET) // mapeando a URL que o cliente vai acessar
 	public ModelAndView getPostDetails(@PathVariable("id") long id) {
 		ModelAndView mv = new ModelAndView("postDetails");
@@ -41,6 +47,7 @@ public class CodeblogController {
 		mv.addObject("post", post);// o div class card do posts.hmtl busca este obj th:each
 		return mv;
 	}
+	
 
 	/// metodo para criar um novo post e redirecionar para o formulário postform
 	@RequestMapping(value = "/newpost", method = RequestMethod.GET)

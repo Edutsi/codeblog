@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--<link rel="stylesheet" href="style/styleCss.css"/>-->
 </head>
- <body><!--ainda nao foi implantada -->
+<body>
 
     <header>
         <nav class="navbar navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1" style="font-weight: bold;">Painel Admin</span>
+            <span class="navbar-brand mb-0 h1" style="font-weight: bold;">MyCodeBlog</span>
             <a href="/newpost" class="btn btn-primary" role="button">Novo Post</a>
         </nav>
+        
     </header>
 
     <section>
@@ -32,8 +33,9 @@
                 </p>
                 <a th:href="${(#mvc.url('CC#getPostDetails').arg(0, post.id)).build()}"><h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;"><span th:text="${post.titulo}"></span></h4></a>
                 <p class="card-text"><span th:utext="${#strings.abbreviate(post.texto,400)} "></span></p>
-                <!--<a th:href="${(#mvc.url('BC#getPostDetails').arg(0, post.id)).build()}" class="card-link">Acessar</a>-->
-<!--                 <a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deletarPost').arg(0, post.id)).build()}"><i class="material-icons left">delete</i></a> -->
+		<!--   botao excluir  #13 Curso Spring Boot:        https://www.youtube.com/watch?v=FZjobwz9J6o -->
+             <a class="btn btn-primary" th:href="@{alterarPost/{id}(id=${post.id})}"><i class="fas fa-edit">Editar Post</i></a>
+		     <a class="btn btn-danger" th:href="@{excluir/{id}(id=${post.id})}"><i class="fas fa.times">Excluir Post</i></a>
             </div>
         </div>
     </div>
