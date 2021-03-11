@@ -9,7 +9,7 @@ import com.spring.codeblog.model.Post;
 import com.spring.codeblog.repository.CodeblogRepository;
 import com.spring.codeblog.service.CodeblogService;
 
-@Service//estereotipe do Spring que está classe será gerenciada por ele
+@Service // estereotipe do Spring que está classe será gerenciada por ele
 public class CodeblogServiceImpl implements CodeblogService {
 
 	@Autowired // ponto de injeção
@@ -32,6 +32,17 @@ public class CodeblogServiceImpl implements CodeblogService {
 	public Post save(Post post) {
 
 		return codeblogRepoitory.save(post);
+	}
+
+	@Override
+	public void deleteById(long id) {
+
+		codeblogRepoitory.deleteById(id);
+	}
+
+	@Override
+	public Post getOne(long id) {
+		return codeblogRepoitory.getOne(id);
 	}
 
 }

@@ -3,7 +3,7 @@
 	  xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <title>MyCodeBlog</title>
+    <title>Alterar Post</title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <!-- Bootstrap CSS -->
@@ -29,24 +29,29 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb" style="background-color: white; padding-left: 0px;">
                 <li class="breadcrumb-item"><a href="/posts">Posts</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Novo Post</li>
+                <li class="breadcrumb-item active" aria-current="page">ALterar Post</li>
             </ol>
         </nav>
+        
         <div>
              <th:block th:include="mensagemValidacao"></th:block>
-            <form method="post">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="titulo" placeholder="Título *">
+            <form method="post" action="alterarPost" th:object="${post}" autocomplete="off">
+             <div class="form-group">
+                   <input type="hidden" th:field="*{id}"><!--  esconde o id do usuario -->
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="autor" placeholder="Autor *">
+                    <input type="text" th:field="*{titulo}">
                 </div>
-                <textarea id="summernote" type="text" class="form-control" name="texto" placeholder="Texto *"></textarea>
+                <div class="form-group">
+                <input type="text" th:field="*{autor}">
+                </div>
+                <div class="form-group">
+                <input type="text" th:field="*{data}">
+                </div>
+				<textarea id="summernote" type="text" th:field="*{texto}"></textarea>
                 <small class="form-text text-muted">(*) Campos obrigatórios</small>
-
-                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Publicar</button>
+				<button class="btn btn-primary" th:href="@{alterarPost/{id}(id=${post.id})}">Alterar</button>
                 <a href="/posts" class="btn btn-light" role="button" style="margin-top: 10px;">Cancelar</a>
-                <!--<button type="submit" class="btn" style="margin-top: 10px;">Cancelar</button>-->
             </form>
         </div>
     </div>

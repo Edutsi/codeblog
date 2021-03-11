@@ -10,5 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface CodeblogRepository extends JpaRepository<Post, Long>{
 
 	
+	//Post findByCodigo(long id);
 	
 }
